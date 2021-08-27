@@ -2,13 +2,14 @@ const fs = require('fs');
 const fetch = require('node-fetch');
 const https = require('https');
 const chalk = require('chalk');
+var incompatableMods = []
 
-const modScan = 200 // current maximum: 200. only scans (modScan) mods and doesn't download mods that are incompatible, meaning the final total of mods may be less than (modScan) mods.
+// config
+var modScan = 200 // current maximum: 200. only scans (modScan) mods and doesn't download mods that are incompatible, meaning the final total of mods may be less than (modScan) mods.
 var DOWNLOAD_DIR = './mods/'; // the directory to put the downloaded mods in
 var mod_versions = ["1.17.1", "1.17"] // the Minecraft game version(s) you want
 var loader = 'fabric' // set to be 'fabric' or 'forge' depending on what loader you are using
-
-var incompatableMods = []
+// end config
 
 // if a mods folder doesn't exist, make one, or do nothing if there is already a mods folder
 if (!fs.existsSync(DOWNLOAD_DIR)) {
